@@ -458,11 +458,9 @@ app_server <- function(input, output, session) {
               doc <- save_to_synapse(
                 input$assay_doc,
                 parent = created_docs_folder,
-                name = paste0(study_name(), "_", input$study_doc$name),
+                name = paste0(study_name(), "_", input$assay_doc$name),
                 annotations = doc_annots()
               )
-              uploaded_docs <- c(uploaded_docs, doc)
-              total_docs <- total_docs + 1
             } else {
               assay_docs <- reactive({
                 input$assay_doc
