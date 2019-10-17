@@ -149,7 +149,8 @@ app_server <- function(input, output, session) {
       utils::read.csv(
         files$indiv$datapath,
         na.strings = "",
-        stringsAsFactors = FALSE)
+        stringsAsFactors = FALSE
+      )
     })
     biosp <- reactive({
       if (is.null(files$biosp)) {
@@ -158,7 +159,8 @@ app_server <- function(input, output, session) {
       utils::read.csv(
         files$biosp$datapath,
         na.strings = "",
-        stringsAsFactors = FALSE)
+        stringsAsFactors = FALSE
+      )
     })
     assay <- reactive({
       if (is.null(files$assay)) {
@@ -167,7 +169,8 @@ app_server <- function(input, output, session) {
       utils::read.csv(
         files$assay$datapath,
         na.strings = "",
-        stringsAsFactors = FALSE)
+        stringsAsFactors = FALSE
+      )
     })
     species_name <- reactive({
       input$species
