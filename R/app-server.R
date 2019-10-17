@@ -71,6 +71,16 @@ app_server <- function(input, output, session) {
       }
     })
 
+    ## If behavioral or electrophysiolgy assay checked,
+    ## reset fileInput
+    observeEvent(input$assay_name, {
+      if (input$assay_name == "behavioral"
+      | input$assay_name == "electrophysiology") {
+        shinyjs::reset("assay_meta")
+        files$assay <- NULL
+      }
+    })
+
     ## Download annotation definitions
     annots <- get_synapse_annotations()
 

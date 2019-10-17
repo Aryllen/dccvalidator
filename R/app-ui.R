@@ -51,7 +51,16 @@ app_ui <- function(request) {
                   selectInput(
                     "assay_name",
                     "Assay type",
-                    c("rnaSeq", "proteomics"))
+                    c(
+                      "rnaSeq",
+                      "single cell rnaSeq" = "sc_rnaSeq",
+                      "proteomics",
+                      "WGS",
+                      "WES",
+                      "behavioral",
+                      "electrophysiology"
+                    )
+                  )
                 ),
 
                 # Files to be validated
@@ -84,15 +93,18 @@ app_ui <- function(request) {
                   )
                 ),
 
-                shinyjs::disabled(
-                  fileInput(
-                    "assay_meta",
-                    "Assay metadata file (.csv)",
-                    width = NULL,
-                    accept = c(
-                      "text/csv",
-                      "text/comma-separated-values,text/plain",
-                      ".csv"
+                conditionalPanel(
+                  condition = "input.assay_name != 'behavioral' && input.assay_name != 'electrophysiology'", # nolint
+                  shinyjs::disabled(
+                    fileInput(
+                      "assay_meta",
+                      "Assay metadata file (.csv)",
+                      width = NULL,
+                      accept = c(
+                        "text/csv",
+                        "text/comma-separated-values,text/plain",
+                        ".csv"
+                      )
                     )
                   )
                 ),
